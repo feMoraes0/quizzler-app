@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -28,23 +28,10 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
   int questionNumber = 0;
-  List<Question> questions = [
-    Question(
-      questionText: 'You can lead a cow down stais but not up stairs.',
-      questionAnswer: false,
-    ),
-    Question(
-      questionText: 'Approximately one quarter of human bones are in the feet.',
-      questionAnswer: true,
-    ),
-    Question(
-      questionText: 'A slug\'s blood is green.',
-      questionAnswer: true,
-    ),
-  ];
+  QuizBrain quizBrain = QuizBrain();
 
   void verifyAnswer(bool answer) {
-    if (this.questionNumber + 1 < this.questions.length)
+    if (this.questionNumber + 1 < this.quizBrain.questions.length)
       setState(() {
         this.questionNumber++;
       });
@@ -62,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                this.questions[this.questionNumber].questionText,
+                this.quizBrain.questions[this.questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
