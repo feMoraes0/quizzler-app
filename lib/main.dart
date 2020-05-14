@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -26,14 +27,23 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stais but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
   int questionNumber = 0;
+  List<Question> questions = [
+    Question(
+      questionText: 'You can lead a cow down stais but not up stairs.',
+      questionAnswer: false,
+    ),
+    Question(
+      questionText: 'Approximately one quarter of human bones are in the feet.',
+      questionAnswer: true,
+    ),
+    Question(
+      questionText: 'A slug\'s blood is green.',
+      questionAnswer: true,
+    ),
+  ];
 
-  void verifyAnswer() {
+  void verifyAnswer(bool answer) {
     if (this.questionNumber + 1 < this.questions.length)
       setState(() {
         this.questionNumber++;
@@ -52,7 +62,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                this.questions[this.questionNumber],
+                this.questions[this.questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -75,7 +85,7 @@ class _QuizPageState extends State<QuizPage> {
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: () => this.verifyAnswer(),
+              onPressed: () => this.verifyAnswer(true),
             ),
           ),
         ),
@@ -91,7 +101,7 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () => this.verifyAnswer(),
+              onPressed: () => this.verifyAnswer(false),
             ),
           ),
         ),
