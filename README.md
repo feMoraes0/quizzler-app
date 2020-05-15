@@ -1,8 +1,7 @@
 <h1 align="center">Quizzler App</h1>
 
-## Print
-<p textAlign="center">
-    <img width="250" src="https://github.com/londonappbrewery/Images/blob/master/quizzler-demo.gif">
+<p align="center">
+    <img width="200" src="https://github.com/londonappbrewery/Images/blob/master/quizzler-demo.gif">
 </p>
 
 ## What I learned?
