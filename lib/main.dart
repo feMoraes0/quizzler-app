@@ -27,14 +27,20 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  int questionNumber = 0;
   QuizBrain quizBrain = QuizBrain();
 
   void verifyAnswer(bool answer) {
-    if (this.questionNumber + 1 < this.quizBrain.questions.length)
-      setState(() {
-        this.questionNumber++;
-      });
+    bool questionAnswer = this.quizBrain.getQuestionAnswer();
+
+    if (questionAnswer == answer) {
+      print('you are right');
+    } else {
+      print('you are wrong');
+    }
+
+    setState(() {
+      this.quizBrain.nextQuestion();
+    });
   }
 
   @override
@@ -49,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                this.quizBrain.questions[this.questionNumber].questionText,
+                this.quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
