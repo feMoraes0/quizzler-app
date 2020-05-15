@@ -43,4 +43,12 @@ class QuizBrain {
   bool getQuestionAnswer() {
     return this._questions[this._questionNumber].questionAnswer;
   }
+
+  bool isFinished() {
+    return (this._questionNumber + 1 == this._questions.length);
+  }
+
+  void reset() {
+    this._questionNumber = 0;
+  }
 }
